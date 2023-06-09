@@ -85,7 +85,7 @@ class PrivateRecipeApiTests(TestCase):
 
     def test_get_recipe_detail(self):
         recipe = create_recipe(user=self.user)
-        url = deteil_url(recipe.id)
+        url = detail_url(recipe.id)
         res = self.client.get(url)
 
         serializer = RecipeDetailSerializer(recipe)
