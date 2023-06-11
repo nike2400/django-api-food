@@ -19,7 +19,8 @@ class Migration(migrations.Migration):
             field=models.ManyToManyField(
                 blank=True,
                 help_text='The groups this user belongs to. \
-                    A user will get all permissions granted to each of their groups.',
+                    A user will get all permissions \
+                        granted to each of their groups.',
                 related_name='user_set',
                 related_query_name='user',
                 to='auth.Group',
@@ -41,7 +42,8 @@ class Migration(migrations.Migration):
                  primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.CharField(max_length=255)),
                 ('user', models.ForeignKey(
-                    on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                    on_delete=django.db.models.deletion.CASCADE,
+                    to=settings.AUTH_USER_MODEL)),
             ],
         ),
         migrations.AddField(
