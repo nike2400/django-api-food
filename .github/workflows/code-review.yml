@@ -1,26 +1,24 @@
-name: Code Review
-
 on:
   pull_request:
-    types: [opened, synchronize]
+    types: [opened, synchronize]  # プルリクエストが "opened"（作成）または "synchronize"（更新）されたときにワークフローをトリガー
 
 jobs:
   review:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest  # ジョブが実行される仮想環境を最新のUbuntuに設定
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
+    - name: Checkout code  # ステップ1: リポジトリのコードをクローン
+      uses: actions/checkout@v3  # actions/checkout@v3アクションを使用して、リポジトリの内容をチェックアウト
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v3
+    - name: Set up Node.js  # ステップ2: Node.jsのセットアップ
+      uses: actions/setup-node@v3  # actions/setup-node@v3アクションを使用して、Node.jsの環境を構築
       with:
-        node-version: '18'
+        node-version: '18'  # Node.jsのバージョンを18に設定
 
-    - name: Install dependencies
-      run: npm install
+    - name: Install dependencies  # ステップ3: プロジェクトの依存パッケージをインストール
+      run: npm install  # npm installコマンドを実行して、package.jsonに定義された依存パッケージをインストール
 
-    - name: Run code review script
+    - name: Run code review script  # ステップ4: コードレビュー用のスクリプトを実行
       env:
         GITHUB_TOKEN: ${{ secrets.ACTION_TOKEN }}
         OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
